@@ -4,4 +4,4 @@
   hosts: localhost
   gather_facts: no
   roles:
-    - sgws_config
+    - adlytaibi.sgws_config
