@@ -41,7 +41,6 @@ Example Playbook
 ```bash
 # ansible-playbook --vault-password-file ~/.passwd .ansible/roles/adlytaibi.sgws_config/sgws_config.yml
 
-
 PLAY [sgws] **********************************************************************************************************************
 
 TASK [adlytaibi.sgws_config : Get grid authorization token] **********************************************************************
@@ -54,7 +53,7 @@ TASK [adlytaibi.sgws_config : Check if group "Developers" exists] **************
 ok: [localhost]
 
 TASK [adlytaibi.sgws_config : Crate new administrators "Developers" group] *******************************************************
-skipping: [localhost]
+ok: [localhost]
 
 TASK [adlytaibi.sgws_config : Load account variables] ****************************************************************************
 ok: [localhost]
@@ -80,7 +79,7 @@ ok: [localhost]
 TASK [adlytaibi.sgws_config : Crate new tenant's "Developers" group] *************************************************************
 ok: [localhost]
 
-TASK [adlytaibi.sgws_config : Generate S3 access key for tenant] *****************************************************************
+TASK [adlytaibi.sgws_config : Load S3 access key for tenant variables] ***********************************************************
 ok: [localhost]
 
 TASK [adlytaibi.sgws_config : Generate S3 keys] **********************************************************************************
@@ -89,14 +88,14 @@ ok: [localhost]
 TASK [adlytaibi.sgws_config : Save generated S3 keys] ****************************************************************************
 changed: [localhost]
 
-TASK [adlytaibi.sgws_config : Create a bucket for tenant] ************************************************************************
+TASK [adlytaibi.sgws_config : Load bucket for tenant variables] ******************************************************************
 ok: [localhost]
 
 TASK [adlytaibi.sgws_config : Create a bucket] ***********************************************************************************
 ok: [localhost]
 
 PLAY RECAP ***********************************************************************************************************************
-localhost                  : ok=15   changed=1    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
+localhost                  : ok=16   changed=1    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
 
 ```
 
