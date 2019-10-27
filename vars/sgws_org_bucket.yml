@@ -1,0 +1,5 @@
+---
+bucketspec: {
+  "name": "bucket-1",
+  "region": "us-east-1",
+}

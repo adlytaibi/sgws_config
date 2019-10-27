@@ -1,0 +1,12 @@
+---
+- name: Create a bucket
+  uri:
+    url: https://{{grid_admn}}/api/v2/org/containers
+    headers:
+      Authorization: "{{orgauth.cookies.AccountAuthorization}}"
+    method: POST
+    body: "{{bucketspec}}"
+    body_format: json
+    validate_certs: no
+    status_code: 201
+  when: orgauth.skipped is not defined

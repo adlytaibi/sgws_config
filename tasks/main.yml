@@ -28,3 +28,7 @@
 - name: Generate S3 access key for tenant
   include_vars: sgws_org_s3keys.yml
 - import_tasks: sgws_org_s3keys.yml
+
+- name: Create a bucket for tenant
+  include_vars: sgws_org_bucket.yml
+- import_tasks: sgws_org_bucket.yml
