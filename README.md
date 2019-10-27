@@ -8,7 +8,6 @@ This role and modules are intended to configure a NetApp StorageGRID. The follow
 - Setup an Identity provider
 - Create a local or federated group
 
-
 Requirements
 ------------
 
@@ -30,7 +29,7 @@ Example Playbook
 ----------------
 
 ```bash
-# ansible-playbook --vault-password-file ~/.passwd sgws_config.yml
+# ansible-playbook --vault-password-file ~/.passwd .ansible/roles/adlytaibi.sgws_config/sgws_config.yml
 
 PLAY [sgws] ***************************************************************************
 
