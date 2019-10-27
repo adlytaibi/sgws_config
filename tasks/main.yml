@@ -4,13 +4,13 @@
 #- import_tasks: sgws_api_mgmt_cert_{{api_mgmt_cert_state}}.yml
 #- import_tasks: sgws_api_stor_cert_{{api_stor_cert_state}}.yml
 
-#- name: Load identity variables
-#  include_vars: sgws_identity.yml
-#- import_tasks: sgws_identity.yml
+- name: Load identity variables
+  include_vars: sgws_identity.yml
+- import_tasks: sgws_identity.yml
 
-#- name: Load admin group variables
-#  include_vars: sgws_group.yml
-#- import_tasks: sgws_group.yml
+- name: Load admin group variables
+  include_vars: sgws_group.yml
+- import_tasks: sgws_group.yml
 
 - name: Load account variables
   include_vars: sgws_accounts.yml
