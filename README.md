@@ -36,6 +36,27 @@ PLAY [sgws] ********************************************************************
 TASK [sgws_config : Get grid authorization token] *************************************
 ok: [localhost]
 
+TASK [adlytaibi.sgws_config : Install signed SSL certificate for management API] ******
+ok: [localhost]
+
+TASK [adlytaibi.sgws_config : Install signed SSL certificate for storage API] *********
+ok: [localhost]
+
+TASK [adlytaibi.sgws_config : Load identity variables] ********************************
+ok: [localhost]
+
+TASK [adlytaibi.sgws_config : Set or update identity source] **************************
+ok: [localhost]
+
+TASK [adlytaibi.sgws_config : Load admin group variables] *****************************
+ok: [localhost]
+
+TASK [adlytaibi.sgws_config : Check if group "Developers" exists] *********************
+ok: [localhost]
+
+TASK [adlytaibi.sgws_config : Crate new administrators "Developers" group] ************
+skipping: [localhost]
+
 TASK [sgws_config : Load account variables] *******************************************
 ok: [localhost]
 
