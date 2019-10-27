@@ -4,13 +4,15 @@ sgws_config
 This role and modules are intended to configure a NetApp StorageGRID. The following tasks can be performed:
 
 - Authorize to get a grid token
-- Install signed SSL certificates
+- Install signed SSL certificates for API management
+- Install signed SSL certificates for Storage management
 - Setup an Identity provider
 - Create a local or federated group for admin
 - Authorize to get a tenant token
 - Setup an Identity provider for tenant
 - Create a local or federated group for tenant
-- Generate S3 keys
+- Generate S3 keys for tenant
+- Create bucket for tenant
 
 Requirements
 ------------
@@ -39,73 +41,63 @@ Example Playbook
 ```bash
 # ansible-playbook --vault-password-file ~/.passwd .ansible/roles/adlytaibi.sgws_config/sgws_config.yml
 
-PLAY [sgws] ***************************************************************************
 
-TASK [sgws_config : Get grid authorization token] *************************************
+PLAY [sgws] **********************************************************************************************************************
+
+TASK [adlytaibi.sgws_config : Get grid authorization token] **********************************************************************
 ok: [localhost]
 
-TASK [adlytaibi.sgws_config : Install signed SSL certificate for management API] ******
+TASK [adlytaibi.sgws_config : Load admin group variables] ************************************************************************
 ok: [localhost]
 
-TASK [adlytaibi.sgws_config : Install signed SSL certificate for storage API] *********
+TASK [adlytaibi.sgws_config : Check if group "Developers" exists] ****************************************************************
 ok: [localhost]
 
-TASK [adlytaibi.sgws_config : Load identity variables] ********************************
-ok: [localhost]
-
-TASK [adlytaibi.sgws_config : Set or update identity source] **************************
-ok: [localhost]
-
-TASK [adlytaibi.sgws_config : Load admin group variables] *****************************
-ok: [localhost]
-
-TASK [adlytaibi.sgws_config : Check if group "Developers" exists] *********************
-ok: [localhost]
-
-TASK [adlytaibi.sgws_config : Crate new administrators "Developers" group] ************
+TASK [adlytaibi.sgws_config : Crate new administrators "Developers" group] *******************************************************
 skipping: [localhost]
 
-TASK [sgws_config : Load account variables] *******************************************
+TASK [adlytaibi.sgws_config : Load account variables] ****************************************************************************
 ok: [localhost]
 
-TASK [sgws_config : Gather accounts list] *********************************************
+TASK [adlytaibi.sgws_config : Gather accounts list] ******************************************************************************
 ok: [localhost]
 
-TASK [sgws_config : Looking if account "Widgets Unlimited" exists] ********************
+TASK [adlytaibi.sgws_config : Looking if account "Widgets Unlimited" exists] *****************************************************
 skipping: [localhost]
 
-TASK [sgws_config : Crate new storage tenant account "Widgets Unlimited"] *************
+TASK [adlytaibi.sgws_config : Crate new storage tenant account "Widgets Unlimited"] **********************************************
 ok: [localhost]
 
-TASK [sgws_config : Get org authorization token] **************************************
+TASK [adlytaibi.sgws_config : Get org authorization token] ***********************************************************************
 ok: [localhost]
 
-TASK [sgws_config : Load tenant's identity variables] *********************************
+TASK [adlytaibi.sgws_config : Load tenant's group variables] *********************************************************************
 ok: [localhost]
 
-TASK [sgws_config : Set or update identity source for tenant] *************************
+TASK [adlytaibi.sgws_config : Check if tenant's group "Developers" exists] *******************************************************
 ok: [localhost]
 
-TASK [sgws_config : Load tenant's group variables] ************************************
+TASK [adlytaibi.sgws_config : Crate new tenant's "Developers" group] *************************************************************
 ok: [localhost]
 
-TASK [sgws_config : Check if tenant's group "Developers" exists] **********************
+TASK [adlytaibi.sgws_config : Generate S3 access key for tenant] *****************************************************************
 ok: [localhost]
 
-TASK [sgws_config : Crate new tenant's "Developers" group] ****************************
+TASK [adlytaibi.sgws_config : Generate S3 keys] **********************************************************************************
 ok: [localhost]
 
-TASK [sgws_config : Generate S3 access key for tenant] ********************************
-ok: [localhost]
-
-TASK [sgws_config : Generate S3 keys] *************************************************
-ok: [localhost]
-
-TASK [sgws_config : Save generated S3 keys] *******************************************
+TASK [adlytaibi.sgws_config : Save generated S3 keys] ****************************************************************************
 changed: [localhost]
 
-PLAY RECAP ****************************************************************************
-localhost                  : ok=13   changed=1    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
+TASK [adlytaibi.sgws_config : Create a bucket for tenant] ************************************************************************
+ok: [localhost]
+
+TASK [adlytaibi.sgws_config : Create a bucket] ***********************************************************************************
+ok: [localhost]
+
+PLAY RECAP ***********************************************************************************************************************
+localhost                  : ok=15   changed=1    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
+
 ```
 
 License
