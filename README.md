@@ -1,5 +1,5 @@
-Role Name
-=========
+sgws_config
+===========
 
 This role and modules are intended to configure a NetApp StorageGRID. The following tasks can be performed:
 
