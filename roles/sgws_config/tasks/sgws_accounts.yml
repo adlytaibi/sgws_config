@@ -1,0 +1,30 @@
+---
+- name: Gather accounts list
+  uri:
+    url: https://{{grid_admn}}/api/v2/grid/accounts
+    headers:
+      Authorization: "{{auth.cookies.GridAuthorization}}"
+    method: GET
+    body_format: json
+    validate_certs: no
+    #status_code: 200, 404
+  register: acctchk
+
+- name: Looking if account "{{tenantacct.name}}" exists
+  set_fact: acctxist=true
+  when: item.name==tenantacct.name
+  with_items: "{{acctchk.json.data}}"
+  no_log: true
+
+- name: Crate new storage tenant account "{{tenantacct.name}}"
+  uri:
+    url: https://{{grid_admn}}/api/v2/grid/accounts
+    headers:
+      Authorization: "{{auth.cookies.GridAuthorization}}"
+    method: POST
+    body: "{{tenantacct}}"
+    body_format: json
+    status_code: 201
+    validate_certs: no
+  register: acctnew
+  when: acctxist is undefined

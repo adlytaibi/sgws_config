@@ -1,0 +1,23 @@
+---
+# Grid administrators group
+# For local group use
+#uniqueName: "group/Developers"
+groupspec: {
+  "displayName": "Developers",
+  "policies": {
+    "management": {
+      "alarmAcknowledgment": true,
+      "otherGridConfiguration": true,
+      "gridTopologyPageConfiguration": true,
+      "tenantAccounts": true,
+      "changeTenantRootPassword": true,
+      "maintenance": true,
+      "metricsQuery": true,
+      "activateFeatures": false,
+      "ilm": true,
+      "objectMetadata": true,
+      "rootAccess": true
+    }
+  },
+  "uniqueName": "federated-group/Developers"
+}

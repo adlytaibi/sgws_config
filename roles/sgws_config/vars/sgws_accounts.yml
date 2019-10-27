@@ -1,0 +1,15 @@
+---
+# Tenant account
+tenantacct: {
+  "name": "Widgets Unlimited",
+  "capabilities": [
+    "management",
+    "s3"
+  ],
+  "policy": {
+    "useAccountIdentitySource": true,
+    "allowPlatformServices": false,
+    "quotaObjectBytes": 100000000000
+  },
+  "password": "{{org_pass}}"
+}

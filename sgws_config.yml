@@ -1,0 +1,7 @@
+---
+- name: sgws
+  connection: local
+  hosts: localhost
+  gather_facts: no
+  roles:
+    - sgws_config

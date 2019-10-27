@@ -1,0 +1,18 @@
+---
+# Identity provider
+identsrc: {
+  "disable": false,
+  "hostname": "dc1.demo.netapp.com",
+  "port": 389,
+  "username": "demo\\bind",
+  "password": "Netapp1!",
+  "baseGroupDn": "DC=demo,DC=netapp,DC=com",
+  "baseUserDn": "DC=demo,DC=netapp,DC=com",
+  "ldapServiceType": "Active Directory",
+  "type": "ldap",
+  "ldapUserIdAttribute": "sAMAccountName",
+  "ldapUserUUIDAttribute": "objectGUID",
+  "ldapGroupIdAttribute": "sAMAccountName",
+  "ldapGroupUUIDAttribute": "objectGUID",
+  "disableTLS": true
+}

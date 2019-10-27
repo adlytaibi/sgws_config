@@ -1,0 +1,24 @@
+---
+- name: Check if tenant's group "{{acctgrp.displayName}}" exists
+  uri:
+    url: "https://{{grid_admn}}/api/v2/org/groups/{{acctgrp.uniqueName|urlencode}}"
+    headers:
+      Authorization: "{{orgauth.cookies.AccountAuthorization}}"
+    method: GET
+    body_format: json
+    validate_certs: no
+    status_code: 200, 404
+  register: grpchk
+  when: orgauth.skipped is not defined
+
+- name: Crate new tenant's "{{acctgrp.displayName}}" group
+  uri:
+    url: https://{{grid_admn}}/api/v2/org/groups
+    headers:
+      Authorization: "{{orgauth.cookies.AccountAuthorization}}"
+    method: POST
+    body: "{{acctgrp}}"
+    body_format: json
+    status_code: 201
+    validate_certs: no
+  when: orgauth.skipped is not defined and grpchk.status==404

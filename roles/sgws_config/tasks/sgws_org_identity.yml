@@ -1,0 +1,12 @@
+---
+- name: Set or update identity source for tenant
+  uri:
+    url: https://{{grid_admn}}/api/v2/org/identity-source
+    headers:
+      Authorization: "{{orgauth.cookies.AccountAuthorization}}"
+    method: PUT
+    body: "{{acctidentsrc}}"
+    body_format: json
+    validate_certs: no
+  when: orgauth.skipped is not defined
+  

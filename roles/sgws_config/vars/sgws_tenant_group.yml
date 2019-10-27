@@ -1,0 +1,26 @@
+---
+# Tenant's group specification
+# For local group use
+#uniqueName: "group/Developers"
+acctgrp: {
+  "displayName": "Developers",
+  "policies": {
+    "management": {
+      "manageAllContainers": true,
+      "manageEndpoints": true,
+      "manageOwnS3Credentials": true,
+      "rootAccess": true
+    },
+    "s3": {
+      "Statement": [
+        {
+          "Sid": "string",
+          "Effect": "Allow",
+          "Action": "s3:GetObject",
+          "Resource": "urn:s3:::*"
+        }
+      ]
+    }
+  },
+  "uniqueName": "federated-group/Developers"
+}

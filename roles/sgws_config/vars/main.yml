@@ -1,0 +1,20 @@
+---
+# vars file for roles/sgws_config
+# StorageGRID admin node
+grid_admn: dc1-adm1.demo.netapp.com
+grid_user: root
+grid_pass: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          61373237376535386335666364303237613966316363663737303032666135343030356232383236
+          3161343235303336303362313335643038623566323738370a643364613837346536356231623463
+          65623763386666343939393133376361613434626637356234623933376132346538373761643664
+          3761613364393037640a613334363164306533373736613737363134623733386361626635383932
+          6438
+
+# Install signed SSL certificates or use defaults
+api_mgmt_cert_state: present
+api_stor_cert_state: present
+
+# Tenant's credentials
+org_user: root
+org_pass: my password

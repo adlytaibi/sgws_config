@@ -1,0 +1,11 @@
+---
+- name: Get org authorization token
+  uri:
+    url: https://{{grid_admn}}/api/v2/authorize
+    method: POST
+    body: { "accountId":"{{acctnew.json.data.id}}", "username": "{{org_user}}", "password": "{{org_pass}}", "cookie": true, "csrfToken": false }
+    body_format: json
+    validate_certs: no
+  register: orgauth
+  no_log: true  
+  when: acctnew.json.data.id is defined
