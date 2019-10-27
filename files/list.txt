@@ -1,0 +1,7 @@
+# Typically you have these files in this directory:
+# chain.pem      CA bundle
+# mgmt_cert.key  Signed cert for API management
+# mgmt_cert.pem  Private key for the above cert
+# stor_cert.key  Signed cert for Storage management
+# stor_cert.pem  Private key for the above cert
+
