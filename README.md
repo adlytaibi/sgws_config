@@ -3,10 +3,14 @@ sgws_config
 
 This role and modules are intended to configure a NetApp StorageGRID. The following tasks can be performed:
 
-- Authorize to get a token
+- Authorize to get a grid token
 - Install signed SSL certificates
 - Setup an Identity provider
-- Create a local or federated group
+- Create a local or federated group for admin
+- Authorize to get a tenant token
+- Setup an Identity provider for tenant
+- Create a local or federated group for tenant
+- Generate S3 keys
 
 Requirements
 ------------
