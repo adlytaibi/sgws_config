@@ -1,7 +1,7 @@
 ---
 # Tenant's group specification
-# For local group use
-#uniqueName: "group/Developers"
+# For federated user group use
+#uniqueName: "federated-group/Developers"
 acctgrp: {
   "displayName": "Developers",
   "policies": {
@@ -22,5 +22,5 @@ acctgrp: {
       ]
     }
   },
-  "uniqueName": "federated-group/Developers"
+  "uniqueName": "group/Developers"
 }

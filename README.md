@@ -24,6 +24,10 @@ Settable variables for the role are in `roles/sgws_config/vars/main.yml`. Passwo
 
 Installing signed API management SSL certificates requires three files `mgmt_cert.pem`, `mgmt_cert.key` and `chain.pem` to be in `roles/sgws_config/files`. Storage API SSL certificate files are `stor_cert.pem`, `stor_cert.key` and `chain.pem`.
 
+Turn on or off plays in `roles/adlytaibi.sgws_config/tasks/main.yml` by commenting or uncommenting the respective lines.
+
+Since there is prerequisite work to perform prior to using some plays. SSL certificate and identity provider play are commented out by default.
+
 Dependencies
 ------------
 

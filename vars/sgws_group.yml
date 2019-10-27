@@ -1,7 +1,7 @@
 ---
 # Grid administrators group
-# For local group use
-#uniqueName: "group/Developers"
+# For federate user group use
+#uniqueName: "federated-group/Developers"
 groupspec: {
   "displayName": "Developers",
   "policies": {
@@ -19,5 +19,5 @@ groupspec: {
       "rootAccess": true
     }
   },
-  "uniqueName": "federated-group/Developers"
+  "uniqueName": "group/Developers"
 }
