@@ -1,7 +1,7 @@
 ---
 - name: Check if tenant's group "{{ acctgrp.displayName }}" exists
   uri:
-    url: "https://{{ grid_admn }}/api/v2/org/groups/
+    url: "https://{{ grid_admn }}/api/v2/org/groups/\
       {{ acctgrp.uniqueName|urlencode }}"
     headers:
       Authorization: "{{ orgauth.cookies.AccountAuthorization }}"

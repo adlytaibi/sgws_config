@@ -1,7 +1,7 @@
 ---
 - name: Check if group "{{ groupspec.displayName }}" exists
   uri:
-    url: "https://{{ grid_admn }}/api/v2/grid/groups/
+    url: "https://{{ grid_admn }}/api/v2/grid/groups/\
       {{ groupspec.uniqueName|urlencode }}"
     headers:
       Authorization: "{{ auth.cookies.GridAuthorization }}"
