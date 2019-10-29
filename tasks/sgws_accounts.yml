@@ -6,8 +6,7 @@
       Authorization: "{{auth.cookies.GridAuthorization}}"
     method: GET
     body_format: json
-    validate_certs: no
-    #status_code: 200, 404
+    validate_certs: false
   register: acctchk
 
 - name: Looking if account "{{tenantacct.name}}" exists
@@ -25,6 +24,6 @@
     body: "{{tenantacct}}"
     body_format: json
     status_code: 201
-    validate_certs: no
+    validate_certs: false
   register: acctnew
   when: acctxist is undefined

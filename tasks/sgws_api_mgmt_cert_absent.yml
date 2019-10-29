@@ -5,8 +5,10 @@
     headers:
       Authorization: "{{auth.cookies.GridAuthorization}}"
     method: POST
-    body: { "serverCertificateEncoded": null, "caBundleEncoded": null, "privateKeyEncoded": null }
+    body: {
+      "serverCertificateEncoded": null,
+      "caBundleEncoded": null, "privateKeyEncoded": null
+    }
     body_format: json
     status_code: 204
-    validate_certs: no
-  
+    validate_certs: false

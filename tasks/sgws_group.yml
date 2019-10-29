@@ -1,12 +1,13 @@
 ---
 - name: Check if group "{{groupspec.displayName}}" exists
   uri:
-    url: "https://{{grid_admn}}/api/v2/grid/groups/{{groupspec.uniqueName|urlencode}}"
+    url: "https://{{grid_admn}}/api/v2/grid/groups/
+      {{groupspec.uniqueName|urlencode}}"
     headers:
       Authorization: "{{auth.cookies.GridAuthorization}}"
     method: GET
     body_format: json
-    validate_certs: no
+    validate_certs: false
     status_code: 200, 404
   register: grpchk
 
@@ -19,5 +20,5 @@
     body: "{{groupspec}}"
     body_format: json
     status_code: 201
-    validate_certs: no
+    validate_certs: false
   when: grpchk.status==404

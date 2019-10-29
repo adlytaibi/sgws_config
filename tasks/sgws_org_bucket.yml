@@ -7,6 +7,6 @@
     method: POST
     body: "{{bucketspec}}"
     body_format: json
-    validate_certs: no
+    validate_certs: false
     status_code: 201
   when: orgauth.skipped is not defined

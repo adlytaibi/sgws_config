@@ -7,5 +7,4 @@
     method: PUT
     body: "{{identsrc}}"
     body_format: json
-    validate_certs: no
-  
+    validate_certs: false

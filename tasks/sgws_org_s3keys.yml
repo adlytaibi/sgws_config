@@ -7,12 +7,12 @@
     method: POST
     body: "{{s3keyspec}}"
     body_format: json
-    validate_certs: no
+    validate_certs: false
     status_code: 201
   register: s3keys
   when: orgauth.skipped is not defined
 
 - name: Save generated S3 keys
-  copy: content={{ s3keys.json.data }} dest=/root/s3keys/{{s3keys.json.data.accountId}}_{{s3keys.json.data.accessKey}}
+  copy: content={{ s3keys.json.data }}
+    dest=/root/s3keys/{{s3keys.json.data.accountId}}_{{s3keys.json.data.accessKey}}
   when: orgauth.skipped is not defined
- 

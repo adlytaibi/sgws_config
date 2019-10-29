@@ -7,6 +7,5 @@
     method: PUT
     body: "{{acctidentsrc}}"
     body_format: json
-    validate_certs: no
+    validate_certs: false
   when: orgauth.skipped is not defined
-  

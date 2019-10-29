@@ -1,7 +1,7 @@
 ---
 # Tenant's group specification
 # For federated user group use
-#uniqueName: "federated-group/Developers"
+# uniqueName: "federated-group/Developers"
 acctgrp: {
   "displayName": "Developers",
   "policies": {

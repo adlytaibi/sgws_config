@@ -5,8 +5,11 @@
     headers:
       Authorization: "{{auth.cookies.GridAuthorization}}"
     method: POST
-    body: { "serverCertificateEncoded": "{{ lookup('file', 'files/mgmt_cert.pem') }}", "caBundleEncoded": "{{ lookup('file', 'files/chain.pem') }}", "privateKeyEncoded": "{{ lookup('file', 'files/mgmt_cert.key') }}" }
+    body: {
+      "serverCertificateEncoded": "{{ lookup('file', 'files/mgmt_cert.pem') }}",
+      "caBundleEncoded": "{{ lookup('file', 'files/chain.pem') }}",
+      "privateKeyEncoded": "{{ lookup('file', 'files/mgmt_cert.key') }}"
+    }
     body_format: json
     status_code: 204
-    validate_certs: no
-  
+    validate_certs: false
