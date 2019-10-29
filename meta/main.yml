@@ -9,7 +9,7 @@ galaxy_info:
     - name: Ubuntu
       versions:
         - all
-    - name: CentOS
+    - name: EL
       versions:
         - all
   galaxy_tags: [netapp, storagegrid]
