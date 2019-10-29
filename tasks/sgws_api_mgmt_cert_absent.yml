@@ -1,9 +1,9 @@
 ---
 - name: Use default certificate for management API
   uri:
-    url: https://{{grid_admn}}/api/v2/grid/management-certificate/update
+    url: https://{{ grid_admn }}/api/v2/grid/management-certificate/update
     headers:
-      Authorization: "{{auth.cookies.GridAuthorization}}"
+      Authorization: "{{ auth.cookies.GridAuthorization }}"
     method: POST
     body: {
       "serverCertificateEncoded": null,

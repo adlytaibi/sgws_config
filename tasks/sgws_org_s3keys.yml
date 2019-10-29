@@ -1,11 +1,11 @@
 ---
 - name: Generate S3 keys
   uri:
-    url: https://{{grid_admn}}/api/v2/org/users/current-user/s3-access-keys
+    url: https://{{ grid_admn }}/api/v2/org/users/current-user/s3-access-keys
     headers:
-      Authorization: "{{orgauth.cookies.AccountAuthorization}}"
+      Authorization: "{{ orgauth.cookies.AccountAuthorization }}"
     method: POST
-    body: "{{s3keyspec}}"
+    body: "{{ s3keyspec }}"
     body_format: json
     validate_certs: false
     status_code: 201
@@ -14,5 +14,5 @@
 
 - name: Save generated S3 keys
   copy: content={{ s3keys.json.data }}
-    dest=/root/s3keys/{{s3keys.json.data.accountId}}_{{s3keys.json.data.accessKey}}
+    dest=/root/s3keys/{{ s3keys.json.data.accountId }}_{{ s3keys.json.data.accessKey }}
   when: orgauth.skipped is not defined

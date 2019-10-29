@@ -1,23 +1,23 @@
 ---
-- name: Check if group "{{groupspec.displayName}}" exists
+- name: Check if group "{{ groupspec.displayName }}" exists
   uri:
-    url: "https://{{grid_admn}}/api/v2/grid/groups/
-      {{groupspec.uniqueName|urlencode}}"
+    url: "https://{{ grid_admn }}/api/v2/grid/groups/
+      {{ groupspec.uniqueName|urlencode }}"
     headers:
-      Authorization: "{{auth.cookies.GridAuthorization}}"
+      Authorization: "{{ auth.cookies.GridAuthorization }}"
     method: GET
     body_format: json
     validate_certs: false
     status_code: 200, 404
   register: grpchk
 
-- name: Crate new administrators "{{groupspec.displayName}}" group
+- name: Crate new administrators "{{ groupspec.displayName }}" group
   uri:
-    url: https://{{grid_admn}}/api/v2/grid/groups
+    url: https://{{ grid_admn }}/api/v2/grid/groups
     headers:
-      Authorization: "{{auth.cookies.GridAuthorization}}"
+      Authorization: "{{ auth.cookies.GridAuthorization }}"
     method: POST
-    body: "{{groupspec}}"
+    body: "{{ groupspec }}"
     body_format: json
     status_code: 201
     validate_certs: false

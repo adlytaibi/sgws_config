@@ -1,8 +1,8 @@
 ---
 # tasks file for roles/sgws_config
 - import_tasks: sgws_authorize.yml
-# - import_tasks: sgws_api_mgmt_cert_{{api_mgmt_cert_state}}.yml
-# - import_tasks: sgws_api_stor_cert_{{api_stor_cert_state}}.yml
+# - import_tasks: sgws_api_mgmt_cert_{{ api_mgmt_cert_state }}.yml
+# - import_tasks: sgws_api_stor_cert_{{ api_stor_cert_state }}.yml
 
 # - name: Load identity variables
 #   include_vars: sgws_identity.yml

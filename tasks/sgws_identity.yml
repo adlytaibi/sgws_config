@@ -1,10 +1,10 @@
 ---
 - name: Set or update identity source
   uri:
-    url: https://{{grid_admn}}/api/v2/grid/identity-source
+    url: https://{{ grid_admn }}/api/v2/grid/identity-source
     headers:
-      Authorization: "{{auth.cookies.GridAuthorization}}"
+      Authorization: "{{ auth.cookies.GridAuthorization }}"
     method: PUT
-    body: "{{identsrc}}"
+    body: "{{ identsrc }}"
     body_format: json
     validate_certs: false
