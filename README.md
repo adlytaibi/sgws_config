@@ -41,61 +41,61 @@ Example Playbook
 ```bash
 # ansible-playbook --vault-password-file ~/.passwd .ansible/roles/adlytaibi.sgws_config/sgws_config.yml
 
-PLAY [sgws] **********************************************************************************************************************
+PLAY [sgws] *********************************************************************************************
 
-TASK [adlytaibi.sgws_config : Get grid authorization token] **********************************************************************
+TASK [adlytaibi.sgws_config : Get grid authorization token] *********************************************
 ok: [localhost]
 
-TASK [adlytaibi.sgws_config : Load admin group variables] ************************************************************************
+TASK [adlytaibi.sgws_config : Load admin group variables] ***********************************************
 ok: [localhost]
 
-TASK [adlytaibi.sgws_config : Check if group "Developers" exists] ****************************************************************
+TASK [adlytaibi.sgws_config : Check if group "Developers" exists] ***************************************
 ok: [localhost]
 
-TASK [adlytaibi.sgws_config : Crate new administrators "Developers" group] *******************************************************
+TASK [adlytaibi.sgws_config : Crate new administrators "Developers" group] ******************************
 ok: [localhost]
 
-TASK [adlytaibi.sgws_config : Load account variables] ****************************************************************************
+TASK [adlytaibi.sgws_config : Load account variables] ***************************************************
 ok: [localhost]
 
-TASK [adlytaibi.sgws_config : Gather accounts list] ******************************************************************************
+TASK [adlytaibi.sgws_config : Gather accounts list] *****************************************************
 ok: [localhost]
 
-TASK [adlytaibi.sgws_config : Looking if account "Widgets Unlimited" exists] *****************************************************
+TASK [adlytaibi.sgws_config : Looking if account "Widgets Unlimited" exists] ****************************
 skipping: [localhost]
 
-TASK [adlytaibi.sgws_config : Crate new storage tenant account "Widgets Unlimited"] **********************************************
+TASK [adlytaibi.sgws_config : Crate new storage tenant account "Widgets Unlimited"] *********************
 ok: [localhost]
 
-TASK [adlytaibi.sgws_config : Get org authorization token] ***********************************************************************
+TASK [adlytaibi.sgws_config : Get org authorization token] **********************************************
 ok: [localhost]
 
-TASK [adlytaibi.sgws_config : Load tenant's group variables] *********************************************************************
+TASK [adlytaibi.sgws_config : Load tenant's group variables] ********************************************
 ok: [localhost]
 
-TASK [adlytaibi.sgws_config : Check if tenant's group "Developers" exists] *******************************************************
+TASK [adlytaibi.sgws_config : Check if tenant's group "Developers" exists] ******************************
 ok: [localhost]
 
-TASK [adlytaibi.sgws_config : Crate new tenant's "Developers" group] *************************************************************
+TASK [adlytaibi.sgws_config : Crate new tenant's "Developers" group] ************************************
 ok: [localhost]
 
-TASK [adlytaibi.sgws_config : Load S3 access key for tenant variables] ***********************************************************
+TASK [adlytaibi.sgws_config : Load S3 access key for tenant variables] **********************************
 ok: [localhost]
 
-TASK [adlytaibi.sgws_config : Generate S3 keys] **********************************************************************************
+TASK [adlytaibi.sgws_config : Generate S3 keys] *********************************************************
 ok: [localhost]
 
-TASK [adlytaibi.sgws_config : Save generated S3 keys] ****************************************************************************
+TASK [adlytaibi.sgws_config : Save generated S3 keys] ***************************************************
 changed: [localhost]
 
-TASK [adlytaibi.sgws_config : Load bucket for tenant variables] ******************************************************************
+TASK [adlytaibi.sgws_config : Load bucket for tenant variables] *****************************************
 ok: [localhost]
 
-TASK [adlytaibi.sgws_config : Create a bucket] ***********************************************************************************
+TASK [adlytaibi.sgws_config : Create a bucket] **********************************************************
 ok: [localhost]
 
-PLAY RECAP ***********************************************************************************************************************
-localhost                  : ok=16   changed=1    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
+PLAY RECAP **********************************************************************************************
+localhost       : ok=16   changed=1    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
 
 ```
 
