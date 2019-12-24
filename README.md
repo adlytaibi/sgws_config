@@ -22,7 +22,7 @@ Requirements
 Role Variables
 --------------
 
-Settable variables for the role are in `roles/sgws_config/vars/main.yml`. Passwords and credentials are incorporated using [ansible-vault](https://docs.ansible.com/ansible/latest/cli/ansible-vault.html). Other variables are under `roles/sgws_config/vars/` for their respective tasks.
+Settable variables for the role are in `roles/sgws_config/vars/main.yml`. Passwords and credentials are incorporated using [ansible-vault](https://docs.ansible.com/ansible/latest/cli/ansible-vault.html) or [read below](#using-ansible-vault).Other variables are under `roles/sgws_config/vars/` for their respective tasks.
 
 Installing signed API management SSL certificates requires three files `mgmt_cert.pem`, `mgmt_cert.key` and `chain.pem` to be in `roles/sgws_config/files`. Storage API SSL certificate files are `stor_cert.pem`, `stor_cert.key` and `chain.pem`.
 
@@ -97,6 +97,37 @@ ok: [localhost]
 PLAY RECAP ***********************************************************************************************************************
 localhost                  : ok=16   changed=1    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
 
+```
+
+[Using ansible-vault] 
+---------------------
+
+Feel free to make it your own, here is only to get you started.
+The file `~/.passwd` contains the vault password.
+
+```bash
+# echo -n NetApp123 > ~/.passwd
+```
+
+Using the above vault password, you can encrypt any value and integrate into `yml` files.
+
+```bash
+# echo -n netapp01|ansible-vault --vault-password-file ~/.passwd encrypt > vault.txt
+# cat vault.txt
+$ANSIBLE_VAULT;1.1;AES256
+62383435316236346137383364373438623661653665363939616231376464643762333364663733
+3430313661363761386536373135663733323764666561630a383736363562363864393037646531
+61383566333332356339376561336239396634626433666434306566386134343031653339333531
+3964356263643134610a346138616566643533346365326662343762346432386563393331306239
+3835
+```
+
+If you wish to verify the encrypted values.
+
+```bash
+# cat vault.txt|ansible-vault --vault-password-file ~/.passwd decrypt
+Decryption successful
+netapp01
 ```
 
 License
