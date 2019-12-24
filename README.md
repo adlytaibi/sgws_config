@@ -99,8 +99,8 @@ localhost                  : ok=16   changed=1    unreachable=0    failed=0    s
 
 ```
 
-[Using ansible-vault] 
----------------------
+## [Using ansible-vault] 
+------------------------
 
 Feel free to make it your own, here is only to get you started.
 The file `~/.passwd` contains the vault password.
