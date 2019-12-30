@@ -14,7 +14,7 @@
 
 - name: Destination directory to store S3 keys
   file:
-    path: {{ s3keysdir }}
+    path: "{{ s3keysdir }}"
     state: directory
     mode: 0600
 

@@ -39,7 +39,7 @@ Example Playbook
 ----------------
 
 ```bash
-# ansible-playbook --vault-password-file ~/.passwd .ansible/roles/adlytaibi.sgws_config/sgws_config.yml
+# ansible-playbook --vault-password-file ~/.passwd ~/.ansible/roles/adlytaibi.sgws_config/sgws_config.yml
 
 PLAY [sgws] *********************************************************************************************
 
