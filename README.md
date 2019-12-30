@@ -112,7 +112,7 @@ The file `~/.passwd` contains the vault password.
 Using the above vault password, you can encrypt any value and integrate into `yml` files.
 
 ```bash
-# echo -n netapp01|ansible-vault --vault-password-file ~/.passwd encrypt > vault.txt
+# echo -n netapp01|ansible-vault encrypt --vault-password-file ~/.passwd > vault.txt
 # cat vault.txt
 $ANSIBLE_VAULT;1.1;AES256
 62383435316236346137383364373438623661653665363939616231376464643762333364663733
@@ -125,7 +125,7 @@ $ANSIBLE_VAULT;1.1;AES256
 If you wish to verify the encrypted values.
 
 ```bash
-# cat vault.txt|ansible-vault --vault-password-file ~/.passwd decrypt
+# cat vault.txt|ansible-vault decrypt --vault-password-file ~/.passwd
 Decryption successful
 netapp01
 ```
