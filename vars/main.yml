@@ -18,3 +18,6 @@ api_stor_cert_state: present
 # Tenant's credentials
 org_user: root
 org_pass: my password
+
+# Directory for storing S3 keys
+s3keysdir: /root/s3keys/

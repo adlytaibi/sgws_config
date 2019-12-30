@@ -12,7 +12,13 @@
   register: s3keys
   when: orgauth.skipped is not defined
 
+- name: Destination directory to store S3 keys
+  file:
+    path: {{ s3keysdir }}
+    state: directory
+    mode: 0600
+
 - name: Save generated S3 keys
   copy: content={{ s3keys.json.data }}
-    dest=/root/s3keys/{{ s3keys.json.data.accountId }}_{{ s3keys.json.data.accessKey }}
+    dest={{ s3keysdir }}{{ s3keys.json.data.accountId }}_{{ s3keys.json.data.accessKey }}
   when: orgauth.skipped is not defined
