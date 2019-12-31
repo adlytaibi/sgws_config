@@ -18,6 +18,7 @@ Requirements
 ------------
 
 - [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html) needs to be installed.
+- [Galaxy](https://galaxy.ansible.com/adlytaibi/sgws_config)
 
 Role Variables
 --------------
@@ -34,6 +35,11 @@ Dependencies
 ------------
 
 There are no dependencies.
+
+How
+---
+
+[Watch a video](https://youtu.be/gXKvRlEsEHI) if you prefer.
 
 Example Playbook
 ----------------
