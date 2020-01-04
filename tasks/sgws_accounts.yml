@@ -15,7 +15,7 @@
   with_items: "{{ acctchk.json.data }}"
   no_log: true
 
-- name: Crate new storage tenant account "{{ tenantacct.name }}"
+- name: Create new storage tenant account "{{ tenantacct.name }}"
   uri:
     url: https://{{ grid_admn }}/api/v2/grid/accounts
     headers:

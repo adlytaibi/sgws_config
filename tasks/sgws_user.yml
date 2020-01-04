@@ -1,0 +1,37 @@
+---
+- name: Check if user "{{ userspec.fullName }}" exists
+  uri:
+    url: "https://{{ grid_admn }}/api/v2/grid/users/\
+      {{ userspec.uniqueName|urlencode }}"
+    headers:
+      Authorization: "{{ auth.cookies.GridAuthorization }}"
+    method: GET
+    body_format: json
+    validate_certs: false
+    status_code: 200, 404
+  register: usrchk
+
+- name: Create new administrator user "{{ userspec.fullName }}"
+  uri:
+    url: https://{{ grid_admn }}/api/v2/grid/users
+    headers:
+      Authorization: "{{ auth.cookies.GridAuthorization }}"
+    method: POST
+    body: "{{ userspec }}"
+    body_format: json
+    status_code: 201
+    validate_certs: false
+  when: groupspec.uniqueName is regex("^group/*") and usrchk.status==404 and grpchk.status==404
+  register: newusr
+
+- name: Set password for administrator user "{{ userspec.fullName }}"
+  uri:
+    url: https://{{ grid_admn }}/api/v2/grid/users/{{newusr.json.data.id}}/change-password
+    headers:
+      Authorization: "{{ auth.cookies.GridAuthorization }}"
+    method: POST
+    body: "{{ userpassspec }}"
+    body_format: json
+    status_code: 204
+    validate_certs: false
+  when: groupspec.uniqueName is regex("^group/*") and usrchk.status==404 and grpchk.status==404

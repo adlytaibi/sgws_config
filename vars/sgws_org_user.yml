@@ -1,0 +1,13 @@
+---
+# Tenant's local user
+# Not needed for federated users
+acctusr: {
+  "fullName": "Test User",
+  "memberOf": [ "{{newacctgrp.json.data.id|default}}" ],
+  "disable": false,
+  "uniqueName": "user/Test"
+}
+
+acctusrpass: {
+  "password": "netapp123"
+}

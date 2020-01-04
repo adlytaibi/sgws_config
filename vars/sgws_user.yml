@@ -1,0 +1,13 @@
+---
+# Grid local administrator user
+# Not needed for federated users
+userspec: {
+  "fullName": "Test User",
+  "memberOf": [ "{{newgroup.json.data.id|default}}" ],
+  "disable": false,
+  "uniqueName": "user/Test"
+}
+
+userpassspec: {
+  "password": "netapp123"
+}

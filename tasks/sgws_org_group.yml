@@ -12,7 +12,7 @@
   register: grpchk
   when: orgauth.skipped is not defined
 
-- name: Crate new tenant's "{{ acctgrp.displayName }}" group
+- name: Create new tenant's "{{ acctgrp.displayName }}" group
   uri:
     url: https://{{ grid_admn }}/api/v2/org/groups
     headers:
@@ -23,3 +23,4 @@
     status_code: 201
     validate_certs: false
   when: orgauth.skipped is not defined and grpchk.status==404
+  register: newacctgrp

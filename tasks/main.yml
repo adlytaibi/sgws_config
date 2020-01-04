@@ -1,29 +1,42 @@
 ---
 # tasks file for roles/sgws_config
-- import_tasks: sgws_authorize.yml
-# - import_tasks: sgws_api_mgmt_cert_{{ api_mgmt_cert_state }}.yml
-# - import_tasks: sgws_api_stor_cert_{{ api_stor_cert_state }}.yml
 
-# - name: Load identity variables
-#   include_vars: sgws_identity.yml
-# - import_tasks: sgws_identity.yml
+### Tenant's section
+- import_tasks: sgws_authorize.yml
+
+#- import_tasks: sgws_api_mgmt_cert_{{ api_mgmt_cert_state }}.yml
+#- import_tasks: sgws_api_stor_cert_{{ api_stor_cert_state }}.yml
+
+#- name: Load identity variables
+#  include_vars: sgws_identity.yml
+#- import_tasks: sgws_identity.yml
 
 - name: Load admin group variables
   include_vars: sgws_group.yml
 - import_tasks: sgws_group.yml
 
+- name: Load local admin user variables
+  include_vars: sgws_user.yml
+- import_tasks: sgws_user.yml
+
 - name: Load account variables
   include_vars: sgws_accounts.yml
 - import_tasks: sgws_accounts.yml
 
+### Tenant's section
 - import_tasks: sgws_org_authorize.yml
-# - name: Load tenant's identity variables
-#   include_vars: sgws_org_identity.yml
-# - import_tasks: sgws_org_identity.yml
 
-- name: Load tenant's group variables
-  include_vars: sgws_tenant_group.yml
+#- name: Load tenant's identity variables
+#  include_vars: sgws_org_identity.yml
+#- import_tasks: sgws_org_identity.yml
+
+- name: Load tenant's user group variables
+  include_vars: sgws_org_group.yml
 - import_tasks: sgws_org_group.yml
+
+- name: Load tenant's local user variables
+  include_vars: sgws_org_user.yml
+- import_tasks: sgws_org_user.yml
 
 - name: Load S3 access key for tenant variables
   include_vars: sgws_org_s3keys.yml
