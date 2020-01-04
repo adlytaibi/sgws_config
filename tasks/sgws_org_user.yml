@@ -27,7 +27,7 @@
 
 - name: Set password for administrator user "{{ acctusr.fullName }}"
   uri:
-    url: https://{{ grid_admn }}/api/v2/org/users/{{newusr.json.data.id}}/change-password
+    url: https://{{ grid_admn }}/api/v2/org/users/{{ newusr.json.data.id }}/change-password
     headers:
       Authorization: "{{ orgauth.cookies.AccountAuthorization }}"
     method: POST
