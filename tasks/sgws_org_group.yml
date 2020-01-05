@@ -13,7 +13,7 @@
         status_code: 200, 404
       register: grpchk
       when: orgauth.skipped is not defined
-    
+
     - name: Create new tenant's "{{ item.displayName }}" group
       uri:
         url: https://{{ grid_admn }}/api/v2/org/groups

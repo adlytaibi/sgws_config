@@ -25,7 +25,7 @@
         validate_certs: false
       register: newusr
       when: usrchk.status==404
-    
+
     - name: Set password for administrator user "{{ uitem[1].fullName }}"
       uri:
         url: https://{{ grid_admn }}/api/v2/grid/users/{{ newusr.json.data.id }}/change-password

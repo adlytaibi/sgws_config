@@ -5,4 +5,4 @@
   include_tasks: sgws_user.yml
   loop: "{{ userspec }}"
   loop_control:
-    loop_var: uitem 
+    loop_var: uitem
