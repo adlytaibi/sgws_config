@@ -1,4 +1,7 @@
 ---
+- name: Load S3 access key for tenant variables
+  include_vars: sgws_org_s3keys.yml
+
 - name: Generate S3 keys
   uri:
     url: https://{{ grid_admn }}/api/v2/org/users/current-user/s3-access-keys

@@ -1,23 +1,42 @@
 ---
-# Grid administrators group
+# Grid administrators groups
 # For federate user group use
 # uniqueName: "federated-group/Developers"
-groupspec: {
-  "displayName": "Developers",
-  "policies": {
-    "management": {
-      "alarmAcknowledgment": true,
-      "otherGridConfiguration": true,
-      "gridTopologyPageConfiguration": true,
-      "tenantAccounts": true,
-      "changeTenantRootPassword": true,
-      "maintenance": true,
-      "metricsQuery": true,
-      "activateFeatures": false,
-      "ilm": true,
-      "objectMetadata": true,
-      "rootAccess": true
-    }
+groupspec: [
+  {
+    "displayName": "Developers",
+    "policies": {
+      "management": {
+        "alarmAcknowledgment": true,
+        "otherGridConfiguration": true,
+        "gridTopologyPageConfiguration": true,
+        "tenantAccounts": true,
+        "changeTenantRootPassword": true,
+        "maintenance": true,
+        "metricsQuery": true,
+        "activateFeatures": false,
+        "ilm": false,
+        "objectMetadata": true,
+        "rootAccess": true
+      }
+    }, "uniqueName": "group/Developers"
   },
-  "uniqueName": "group/Developers"
-}
+  {
+    "displayName": "Storage",
+    "policies": {
+      "management": {
+        "alarmAcknowledgment": true,
+        "otherGridConfiguration": true,
+        "gridTopologyPageConfiguration": true,
+        "tenantAccounts": true,
+        "changeTenantRootPassword": true,
+        "maintenance": true,
+        "metricsQuery": true,
+        "activateFeatures": true,
+        "ilm": true,
+        "objectMetadata": true,
+        "rootAccess": true
+      }
+    }, "uniqueName": "group/Storage"
+  }
+]

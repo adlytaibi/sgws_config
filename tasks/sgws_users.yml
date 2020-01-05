@@ -1,0 +1,8 @@
+---
+- name: Load local admin users' variables
+  include_vars: sgws_user.yml
+- name: Create and set password for admin users
+  include_tasks: sgws_user.yml
+  loop: "{{ userspec }}"
+  loop_control:
+    loop_var: uitem 

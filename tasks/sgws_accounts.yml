@@ -1,4 +1,7 @@
 ---
+- name: Load account variables
+  include_vars: sgws_accounts.yml
+
 - name: Gather accounts list
   uri:
     url: https://{{ grid_admn }}/api/v2/grid/accounts

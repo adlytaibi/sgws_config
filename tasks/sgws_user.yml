@@ -1,37 +1,40 @@
 ---
-- name: Check if user "{{ userspec.fullName }}" exists
-  uri:
-    url: "https://{{ grid_admn }}/api/v2/grid/users/\
-      {{ userspec.uniqueName|urlencode }}"
-    headers:
-      Authorization: "{{ auth.cookies.GridAuthorization }}"
-    method: GET
-    body_format: json
-    validate_certs: false
-    status_code: 200, 404
-  register: usrchk
+- name: Create and set password for admin user "{{ uitem[1].fullName }}"
+  block:
+    - name: Check if user "{{ uitem[1].fullName }}" exists
+      uri:
+        url: "https://{{ grid_admn }}/api/v2/grid/users/\
+          {{ uitem[1].uniqueName|urlencode }}"
+        headers:
+          Authorization: "{{ auth.cookies.GridAuthorization }}"
+        method: GET
+        body_format: json
+        validate_certs: false
+        status_code: 200, 404
+      register: usrchk
 
-- name: Create new administrator user "{{ userspec.fullName }}"
-  uri:
-    url: https://{{ grid_admn }}/api/v2/grid/users
-    headers:
-      Authorization: "{{ auth.cookies.GridAuthorization }}"
-    method: POST
-    body: "{{ userspec }}"
-    body_format: json
-    status_code: 201
-    validate_certs: false
-  when: groupspec.uniqueName is regex("^group/*") and usrchk.status==404 and grpchk.status==404
-  register: newusr
-
-- name: Set password for administrator user "{{ userspec.fullName }}"
-  uri:
-    url: https://{{ grid_admn }}/api/v2/grid/users/{{ newusr.json.data.id }}/change-password
-    headers:
-      Authorization: "{{ auth.cookies.GridAuthorization }}"
-    method: POST
-    body: "{{ userpassspec }}"
-    body_format: json
-    status_code: 204
-    validate_certs: false
-  when: groupspec.uniqueName is regex("^group/*") and usrchk.status==404 and grpchk.status==404
+    - name: Create new administrator user "{{ uitem[1].fullName }}"
+      uri:
+        url: https://{{ grid_admn }}/api/v2/grid/users
+        headers:
+          Authorization: "{{ auth.cookies.GridAuthorization }}"
+        method: POST
+        body: "{{ uitem[1] }}"
+        body_format: json
+        status_code: 201
+        validate_certs: false
+      register: newusr
+      when: usrchk.status==404
+    
+    - name: Set password for administrator user "{{ uitem[1].fullName }}"
+      uri:
+        url: https://{{ grid_admn }}/api/v2/grid/users/{{ newusr.json.data.id }}/change-password
+        headers:
+          Authorization: "{{ auth.cookies.GridAuthorization }}"
+        method: POST
+        body: "{{ uitem[2] }}"
+        body_format: json
+        status_code: 204
+        validate_certs: false
+      when: usrchk.status==404
+  when: item.uniqueName is regex("^group/*") and item.displayName==uitem[0].localgroup and grpchk.status==404

@@ -2,25 +2,47 @@
 # Tenant's group specification
 # For federated user group use
 # uniqueName: "federated-group/Developers"
-acctgrp: {
-  "displayName": "Developers",
-  "policies": {
-    "management": {
-      "manageAllContainers": true,
-      "manageEndpoints": true,
-      "manageOwnS3Credentials": true,
-      "rootAccess": true
-    },
-    "s3": {
-      "Statement": [
-        {
-          "Sid": "string",
-          "Effect": "Allow",
-          "Action": "s3:GetObject",
-          "Resource": "urn:s3:::*"
-        }
-      ]
-    }
+acctgrp: [
+  {
+    "displayName": "Developers",
+    "policies": {
+      "management": {
+        "manageAllContainers": true,
+        "manageEndpoints": true,
+        "manageOwnS3Credentials": true,
+        "rootAccess": true
+      },
+      "s3": {
+        "Statement": [
+          {
+            "Sid": "string",
+            "Effect": "Allow",
+            "Action": "s3:GetObject",
+            "Resource": "urn:s3:::*"
+          }
+        ]
+      }
+    }, "uniqueName": "group/Developers"
   },
-  "uniqueName": "group/Developers"
-}
+  {
+    "displayName": "Apps",
+    "policies": {
+      "management": {
+        "manageAllContainers": true,
+        "manageEndpoints": true,
+        "manageOwnS3Credentials": true,
+        "rootAccess": true
+      },
+      "s3": {
+        "Statement": [
+          {
+            "Sid": "string",
+            "Effect": "Allow",
+            "Action": "s3:GetObject",
+            "Resource": "urn:s3:::*"
+          }
+        ]
+      }
+    }, "uniqueName": "group/Apps"
+  }
+]

@@ -1,4 +1,7 @@
 ---
+- name: Load bucket for tenant variables
+  include_vars: sgws_org_bucket.yml
+
 - name: Create a bucket
   uri:
     url: https://{{ grid_admn }}/api/v2/org/containers

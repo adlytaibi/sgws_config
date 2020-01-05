@@ -1,26 +1,31 @@
 ---
-- name: Check if tenant's group "{{ acctgrp.displayName }}" exists
-  uri:
-    url: "https://{{ grid_admn }}/api/v2/org/groups/\
-      {{ acctgrp.uniqueName|urlencode }}"
-    headers:
-      Authorization: "{{ orgauth.cookies.AccountAuthorization }}"
-    method: GET
-    body_format: json
-    validate_certs: false
-    status_code: 200, 404
-  register: grpchk
-  when: orgauth.skipped is not defined
+- name: Create group "{{ item.displayName }}" if it doesn't exists
+  block:
+    - name: Check if tenant's group "{{ item.displayName }}" exists
+      uri:
+        url: "https://{{ grid_admn }}/api/v2/org/groups/\
+          {{ item.uniqueName|urlencode }}"
+        headers:
+          Authorization: "{{ orgauth.cookies.AccountAuthorization }}"
+        method: GET
+        body_format: json
+        validate_certs: false
+        status_code: 200, 404
+      register: grpchk
+      when: orgauth.skipped is not defined
+    
+    - name: Create new tenant's "{{ item.displayName }}" group
+      uri:
+        url: https://{{ grid_admn }}/api/v2/org/groups
+        headers:
+          Authorization: "{{ orgauth.cookies.AccountAuthorization }}"
+        method: POST
+        body: "{{ item }}"
+        body_format: json
+        status_code: 201
+        validate_certs: false
+      when: orgauth.skipped is not defined and grpchk.status==404
+      register: newacctgrp
 
-- name: Create new tenant's "{{ acctgrp.displayName }}" group
-  uri:
-    url: https://{{ grid_admn }}/api/v2/org/groups
-    headers:
-      Authorization: "{{ orgauth.cookies.AccountAuthorization }}"
-    method: POST
-    body: "{{ acctgrp }}"
-    body_format: json
-    status_code: 201
-    validate_certs: false
-  when: orgauth.skipped is not defined and grpchk.status==404
-  register: newacctgrp
+    - name: Create users part of the group
+      include_tasks: sgws_org_users.yml

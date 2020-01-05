@@ -1,13 +1,25 @@
 ---
-# Grid local administrator user
+# Grid local administrator users
 # Not needed for federated users
-userspec: {
-  "fullName": "Test User",
-  "memberOf": [ "{{newgroup.json.data.id|default}}" ],
-  "disable": false,
-  "uniqueName": "user/Test"
-}
-
-userpassspec: {
-  "password": "netapp123"
-}
+userspec: [
+  [
+    "localgroup": "Developers",
+    {
+      "fullName": "Developer Test User",
+      "memberOf": [ "{{newgroup.json.data.id|default}}" ],
+      "disable": false,
+      "uniqueName": "user/devtest"
+    },
+    { "password": "netappdev123" }
+  ],
+  [
+    "localgroup": "Storage",
+    {
+      "fullName": "Storage Test User",
+      "memberOf": [ "{{newgroup.json.data.id|default}}" ],
+      "disable": false,
+      "uniqueName": "user/stortest"
+    },
+    { "password": "netappstor1234" }
+  ]
+]

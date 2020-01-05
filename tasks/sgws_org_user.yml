@@ -1,38 +1,40 @@
 ---
-- name: Check if user "{{ acctusr.fullName }}" exists
-  uri:
-    url: "https://{{ grid_admn }}/api/v2/org/users/\
-      {{ acctusr.uniqueName|urlencode }}"
-    headers:
-      Authorization: "{{ orgauth.cookies.AccountAuthorization }}"
-    method: GET
-    body_format: json
-    validate_certs: false
-    status_code: 200, 404
-  register: usrchk
-  when: orgauth.skipped is not defined
+- name: Create and set password for admin user "{{ uitem[1].fullName }}"
+  block:
+    - name: Check if user "{{ uitem[1].fullName }}" exists
+      uri:
+        url: "https://{{ grid_admn }}/api/v2/org/users/\
+          {{ uitem[1].uniqueName|urlencode }}"
+        headers:
+          Authorization: "{{ orgauth.cookies.AccountAuthorization }}"
+        method: GET
+        body_format: json
+        validate_certs: false
+        status_code: 200, 404
+      register: usrchk
 
-- name: Create new administrator user "{{ acctusr.fullName }}"
-  uri:
-    url: https://{{ grid_admn }}/api/v2/org/users
-    headers:
-      Authorization: "{{ orgauth.cookies.AccountAuthorization }}"
-    method: POST
-    body: "{{ acctusr }}"
-    body_format: json
-    status_code: 201
-    validate_certs: false
-  when: orgauth.skipped is not defined and acctgrp.uniqueName is regex("^group/*") and usrchk.status==404 and grpchk.status==404
-  register: newusr
+    - name: Create new tenant user "{{ uitem[1].fullName }}"
+      uri:
+        url: https://{{ grid_admn }}/api/v2/org/users
+        headers:
+          Authorization: "{{ orgauth.cookies.AccountAuthorization }}"
+        method: POST
+        body: "{{ uitem[1] }}"
+        body_format: json
+        status_code: 201
+        validate_certs: false
+      register: newusr
+      when: usrchk.status==404
 
-- name: Set password for administrator user "{{ acctusr.fullName }}"
-  uri:
-    url: https://{{ grid_admn }}/api/v2/org/users/{{ newusr.json.data.id }}/change-password
-    headers:
-      Authorization: "{{ orgauth.cookies.AccountAuthorization }}"
-    method: POST
-    body: "{{ acctusrpass }}"
-    body_format: json
-    status_code: 204
-    validate_certs: false
-  when: orgauth.skipped is not defined and acctgrp.uniqueName is regex("^group/*") and usrchk.status==404 and grpchk.status==404
+    - name: Set password for tenant user "{{ uitem[1].fullName }}"
+      uri:
+        url: https://{{ grid_admn }}/api/v2/org/users/{{ newusr.json.data.id }}/change-password
+        headers:
+          Authorization: "{{ orgauth.cookies.AccountAuthorization }}"
+        method: POST
+        body: "{{ uitem[2] }}"
+        body_format: json
+        status_code: 204
+        validate_certs: false
+      when: usrchk.status==404
+  when: orgauth.skipped is not defined and item.uniqueName is regex("^group/*") and item.displayName==uitem[0].localgroup and grpchk.status==404

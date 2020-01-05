@@ -1,0 +1,6 @@
+---
+- name: Load tenant's user group variables
+  include_vars: sgws_org_group.yml
+- name: Create tenant's user groups and users
+  include_tasks: sgws_org_group.yml
+  loop: "{{ acctgrp }}"

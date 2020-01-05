@@ -1,25 +1,30 @@
 ---
-- name: Check if group "{{ groupspec.displayName }}" exists
-  uri:
-    url: "https://{{ grid_admn }}/api/v2/grid/groups/\
-      {{ groupspec.uniqueName|urlencode }}"
-    headers:
-      Authorization: "{{ auth.cookies.GridAuthorization }}"
-    method: GET
-    body_format: json
-    validate_certs: false
-    status_code: 200, 404
-  register: grpchk
+- name: Create group "{{ item.displayName }}" if it doesn't exists
+  block:
+    - name: Check if group "{{ item.displayName }}" exists
+      uri:
+        url: "https://{{ grid_admn }}/api/v2/grid/groups/\
+          {{ item.uniqueName|urlencode }}"
+        headers:
+          Authorization: "{{ auth.cookies.GridAuthorization }}"
+        method: GET
+        body_format: json
+        validate_certs: false
+        status_code: 200, 404
+      register: grpchk
 
-- name: Create new administrators "{{ groupspec.displayName }}" group
-  uri:
-    url: https://{{ grid_admn }}/api/v2/grid/groups
-    headers:
-      Authorization: "{{ auth.cookies.GridAuthorization }}"
-    method: POST
-    body: "{{ groupspec }}"
-    body_format: json
-    status_code: 201
-    validate_certs: false
-  when: grpchk.status==404
-  register: newgroup
+    - name: Create new administrators "{{ item.displayName }}" group
+      uri:
+        url: https://{{ grid_admn }}/api/v2/grid/groups
+        headers:
+          Authorization: "{{ auth.cookies.GridAuthorization }}"
+        method: POST
+        body: "{{ item }}"
+        body_format: json
+        status_code: 201
+        validate_certs: false
+      when: grpchk.status==404
+      register: newgroup
+
+    - name: Create users part of the group
+      include_tasks: sgws_users.yml

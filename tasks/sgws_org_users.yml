@@ -1,0 +1,8 @@
+---
+- name: Load local tenant's users' variables
+  include_vars: sgws_org_user.yml
+- name: Create and set password for tenant's users
+  include_tasks: sgws_org_user.yml
+  loop: "{{ acctusr }}"
+  loop_control:
+    loop_var: uitem 

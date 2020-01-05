@@ -49,88 +49,196 @@ Example Playbook
 ```bash
 # ansible-playbook --vault-password-file ~/.passwd ~/.ansible/roles/adlytaibi.sgws_config/sgws_config.yml
 
-PLAY [sgws] *******************************************************************************
+PLAY [sgws] *********************************************************************************************************
 
-TASK [adlytaibi.sgws_config : Get grid authorization token] *******************************
+TASK [adlytaibi.sgws_config : Get grid authorization token] *********************************************************
 ok: [localhost]
 
-TASK [adlytaibi.sgws_config : Load admin group variables] *********************************
+TASK [adlytaibi.sgws_config : Load admin group variables] ***********************************************************
 ok: [localhost]
 
-TASK [adlytaibi.sgws_config : Check if group "Developers" exists] *************************
+TASK [adlytaibi.sgws_config : Create grid user groups and users] ****************************************************
+included: /root/.ansible/roles/adlytaibi.sgws_config/tasks/sgws_group.yml for localhost
+included: /root/.ansible/roles/adlytaibi.sgws_config/tasks/sgws_group.yml for localhost
+
+TASK [adlytaibi.sgws_config : Check if group "Developers" exists] ***************************************************
 ok: [localhost]
 
-TASK [adlytaibi.sgws_config : Create new administrators "Developers" group] ***************
+TASK [adlytaibi.sgws_config : Create new administrators "Developers" group] *****************************************
 ok: [localhost]
 
-TASK [adlytaibi.sgws_config : Load local admin user variables] ****************************
+TASK [adlytaibi.sgws_config : Create users part of the group] *******************************************************
+included: /root/.ansible/roles/adlytaibi.sgws_config/tasks/sgws_users.yml for localhost
+
+TASK [adlytaibi.sgws_config : Load local admin users' variables] ****************************************************
 ok: [localhost]
 
-TASK [adlytaibi.sgws_config : Check if user "Test User" exists] ***************************
+TASK [adlytaibi.sgws_config : Create and set password for admin users] **********************************************
+included: /root/.ansible/roles/adlytaibi.sgws_config/tasks/sgws_user.yml for localhost
+included: /root/.ansible/roles/adlytaibi.sgws_config/tasks/sgws_user.yml for localhost
+
+TASK [adlytaibi.sgws_config : Check if user "Developer Test User" exists] *******************************************
 ok: [localhost]
 
-TASK [adlytaibi.sgws_config : Create new administrator user "Test User"] ******************
+TASK [adlytaibi.sgws_config : Create new administrator user "Developer Test User"] **********************************
 ok: [localhost]
 
-TASK [adlytaibi.sgws_config : Set password for administrator user "Test User"] ************
+TASK [adlytaibi.sgws_config : Set password for administrator user "Developer Test User"] ****************************
 ok: [localhost]
 
-TASK [adlytaibi.sgws_config : Load account variables] *************************************
-ok: [localhost]
-
-TASK [adlytaibi.sgws_config : Gather accounts list] ***************************************
-ok: [localhost]
-
-TASK [adlytaibi.sgws_config : Looking if account "Widgets Unlimited" exists] **************
+TASK [adlytaibi.sgws_config : Check if user "Storage Test User" exists] *********************************************
 skipping: [localhost]
 
-TASK [adlytaibi.sgws_config : Create new storage tenant account "Widgets Unlimited"] ******
+TASK [adlytaibi.sgws_config : Create new administrator user "Storage Test User"] ************************************
+skipping: [localhost]
+
+TASK [adlytaibi.sgws_config : Set password for administrator user "Storage Test User"] ******************************
+skipping: [localhost]
+
+TASK [adlytaibi.sgws_config : Check if group "Storage" exists] ******************************************************
 ok: [localhost]
 
-TASK [adlytaibi.sgws_config : Get org authorization token] ********************************
+TASK [adlytaibi.sgws_config : Create new administrators "Storage" group] ********************************************
 ok: [localhost]
 
-TASK [adlytaibi.sgws_config : Load tenant's user group variables] *************************
+TASK [adlytaibi.sgws_config : Create users part of the group] *******************************************************
+included: /root/.ansible/roles/adlytaibi.sgws_config/tasks/sgws_users.yml for localhost
+
+TASK [adlytaibi.sgws_config : Load local admin users' variables] ****************************************************
 ok: [localhost]
 
-TASK [adlytaibi.sgws_config : Check if tenant's group "Developers" exists] ****************
+TASK [adlytaibi.sgws_config : Create and set password for admin users] **********************************************
+included: /root/.ansible/roles/adlytaibi.sgws_config/tasks/sgws_user.yml for localhost
+included: /root/.ansible/roles/adlytaibi.sgws_config/tasks/sgws_user.yml for localhost
+
+TASK [adlytaibi.sgws_config : Check if user "Developer Test User" exists] *******************************************
+skipping: [localhost]
+
+TASK [adlytaibi.sgws_config : Create new administrator user "Developer Test User"] **********************************
+skipping: [localhost]
+
+TASK [adlytaibi.sgws_config : Set password for administrator user "Developer Test User"] ****************************
+skipping: [localhost]
+
+TASK [adlytaibi.sgws_config : Check if user "Storage Test User" exists] *********************************************
 ok: [localhost]
 
-TASK [adlytaibi.sgws_config : Create new tenant's "Developers" group] *********************
+TASK [adlytaibi.sgws_config : Create new administrator user "Storage Test User"] ************************************
 ok: [localhost]
 
-TASK [adlytaibi.sgws_config : Load tenant's local user variables] *************************
+TASK [adlytaibi.sgws_config : Set password for administrator user "Storage Test User"] ******************************
 ok: [localhost]
 
-TASK [adlytaibi.sgws_config : Check if user "Test User" exists] ***************************
+TASK [adlytaibi.sgws_config : Load account variables] ***************************************************************
 ok: [localhost]
 
-TASK [adlytaibi.sgws_config : Create new administrator user "Test User"] ******************
+TASK [adlytaibi.sgws_config : Gather accounts list] *****************************************************************
 ok: [localhost]
 
-TASK [adlytaibi.sgws_config : Set password for administrator user "Test User"] ************
+TASK [adlytaibi.sgws_config : Looking if account "Widgets Unlimited" exists] ****************************************
+skipping: [localhost]
+
+TASK [adlytaibi.sgws_config : Create new storage tenant account "Widgets Unlimited"] ********************************
 ok: [localhost]
 
-TASK [adlytaibi.sgws_config : Load S3 access key for tenant variables] ********************
+TASK [adlytaibi.sgws_config : Get org authorization token] **********************************************************
 ok: [localhost]
 
-TASK [adlytaibi.sgws_config : Generate S3 keys] *******************************************
+TASK [adlytaibi.sgws_config : Load tenant's user group variables] ***************************************************
 ok: [localhost]
 
-TASK [adlytaibi.sgws_config : Destination directory to store S3 keys] *********************
+TASK [adlytaibi.sgws_config : Create tenant's user groups and users] ************************************************
+included: /root/.ansible/roles/adlytaibi.sgws_config/tasks/sgws_org_group.yml for localhost
+included: /root/.ansible/roles/adlytaibi.sgws_config/tasks/sgws_org_group.yml for localhost
+
+TASK [adlytaibi.sgws_config : Check if tenant's group "Developers" exists] ******************************************
+ok: [localhost]
+
+TASK [adlytaibi.sgws_config : Create new tenant's "Developers" group] ***********************************************
+ok: [localhost]
+
+TASK [adlytaibi.sgws_config : Create users part of the group] *******************************************************
+included: /root/.ansible/roles/adlytaibi.sgws_config/tasks/sgws_org_users.yml for localhost
+
+TASK [adlytaibi.sgws_config : Load local tenant's users' variables] *************************************************
+ok: [localhost]
+
+TASK [adlytaibi.sgws_config : Create and set password for tenant's users] *******************************************
+included: /root/.ansible/roles/adlytaibi.sgws_config/tasks/sgws_org_user.yml for localhost
+included: /root/.ansible/roles/adlytaibi.sgws_config/tasks/sgws_org_user.yml for localhost
+
+TASK [adlytaibi.sgws_config : Check if user "Developer Test User" exists] *******************************************
+ok: [localhost]
+
+TASK [adlytaibi.sgws_config : Create new tenant user "Developer Test User"] *****************************************
+ok: [localhost]
+
+TASK [adlytaibi.sgws_config : Set password for tenant user "Developer Test User"] ***********************************
+ok: [localhost]
+
+TASK [adlytaibi.sgws_config : Check if user "Apps Test User" exists] ************************************************
+skipping: [localhost]
+
+TASK [adlytaibi.sgws_config : Create new tenant user "Apps Test User"] **********************************************
+skipping: [localhost]
+
+TASK [adlytaibi.sgws_config : Set password for tenant user "Apps Test User"] ****************************************
+skipping: [localhost]
+
+TASK [adlytaibi.sgws_config : Check if tenant's group "Apps" exists] ************************************************
+ok: [localhost]
+
+TASK [adlytaibi.sgws_config : Create new tenant's "Apps" group] *****************************************************
+ok: [localhost]
+
+TASK [adlytaibi.sgws_config : Create users part of the group] *******************************************************
+included: /root/.ansible/roles/adlytaibi.sgws_config/tasks/sgws_org_users.yml for localhost
+
+TASK [adlytaibi.sgws_config : Load local tenant's users' variables] *************************************************
+ok: [localhost]
+
+TASK [adlytaibi.sgws_config : Create and set password for tenant's users] *******************************************
+included: /root/.ansible/roles/adlytaibi.sgws_config/tasks/sgws_org_user.yml for localhost
+included: /root/.ansible/roles/adlytaibi.sgws_config/tasks/sgws_org_user.yml for localhost
+
+TASK [adlytaibi.sgws_config : Check if user "Developer Test User" exists] *******************************************
+skipping: [localhost]
+
+TASK [adlytaibi.sgws_config : Create new tenant user "Developer Test User"] *****************************************
+skipping: [localhost]
+
+TASK [adlytaibi.sgws_config : Set password for tenant user "Developer Test User"] ***********************************
+skipping: [localhost]
+
+TASK [adlytaibi.sgws_config : Check if user "Apps Test User" exists] ************************************************
+ok: [localhost]
+
+TASK [adlytaibi.sgws_config : Create new tenant user "Apps Test User"] **********************************************
+ok: [localhost]
+
+TASK [adlytaibi.sgws_config : Set password for tenant user "Apps Test User"] ****************************************
+ok: [localhost]
+
+TASK [adlytaibi.sgws_config : Load S3 access key for tenant variables] **********************************************
+ok: [localhost]
+
+TASK [adlytaibi.sgws_config : Generate S3 keys] *********************************************************************
+ok: [localhost]
+
+TASK [adlytaibi.sgws_config : Destination directory to store S3 keys] ***********************************************
+ok: [localhost]
+
+TASK [adlytaibi.sgws_config : Save generated S3 keys] ***************************************************************
 changed: [localhost]
 
-TASK [adlytaibi.sgws_config : Save generated S3 keys] *************************************
-changed: [localhost]
-
-TASK [adlytaibi.sgws_config : Load bucket for tenant variables] ***************************
+TASK [adlytaibi.sgws_config : Load bucket for tenant variables] *****************************************************
 ok: [localhost]
 
-TASK [adlytaibi.sgws_config : Create a bucket] ********************************************
+TASK [adlytaibi.sgws_config : Create a bucket] **********************************************************************
 ok: [localhost]
 
-PLAY RECAP ********************************************************************************
-localhost: ok=25   changed=2   unreachable=0   failed=0   skipped=1   rescued=0   ignored=0
+PLAY RECAP **********************************************************************************************************
+localhost                  : ok=53   changed=1    unreachable=0    failed=0    skipped=13   rescued=0    ignored=0
 
 ```
 

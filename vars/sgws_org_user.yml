@@ -1,13 +1,25 @@
 ---
 # Tenant's local user
 # Not needed for federated users
-acctusr: {
-  "fullName": "Test User",
-  "memberOf": [ "{{newacctgrp.json.data.id|default}}" ],
-  "disable": false,
-  "uniqueName": "user/Test"
-}
-
-acctusrpass: {
-  "password": "netapp123"
-}
+acctusr: [
+  [
+    "localgroup": "Developers",
+    {
+      "fullName": "Developer Test User",
+      "memberOf": [ "{{newacctgrp.json.data.id|default}}" ],
+      "disable": false,
+      "uniqueName": "user/devtest"
+    },
+    { "password": "netappdev123" }
+  ],
+  [
+    "localgroup": "Apps",
+    {
+      "fullName": "Apps Test User",
+      "memberOf": [ "{{newacctgrp.json.data.id|default}}" ],
+      "disable": false,
+      "uniqueName": "user/apptest"
+    },
+    { "password": "netappapp1234" }
+  ]
+]

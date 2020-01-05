@@ -1,4 +1,7 @@
 ---
+- name: Load tenant's identity variables
+  include_vars: sgws_org_identity.yml
+
 - name: Set or update identity source for tenant
   uri:
     url: https://{{ grid_admn }}/api/v2/org/identity-source

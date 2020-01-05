@@ -1,0 +1,6 @@
+---
+- name: Load admin group variables
+  include_vars: sgws_group.yml
+- name: Create grid user groups and users
+  include_tasks: sgws_group.yml
+  loop: "{{ groupspec }}"
