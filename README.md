@@ -6,15 +6,20 @@ This role and modules are intended to configure a NetApp StorageGRID. The follow
 - Authorize to get a grid token
 - Install signed SSL certificates for API management
 - Install signed SSL certificates for Storage management
-- Setup an Identity provider
-- Create a local or federated admin group for grid
-- Create a local admin user for grid
+- Setup an identity provider
+- Create a local or federated admin groups for grid
+- Create a local admin users for grid
 - Authorize to get a tenant token
-- Setup an Identity provider for tenant
-- Create a local or federated group for tenant
-- Create a local user for tenant
+- Setup an identity provider for tenant
+- Create a local or federated groups for tenant
+- Create a local users for tenant
 - Generate S3 keys for tenant
 - Create bucket for tenant
+
+### Note: 
+- Setting up identity provider is a pre-requisite to creating federated groups.
+- Ability to create federated groups and local groups in one run.
+- Local users to a federated group will be ignored.
 
 Requirements
 ------------
@@ -41,7 +46,7 @@ There are no dependencies.
 How
 ---
 
-[Watch a video](https://youtu.be/gXKvRlEsEHI) if you prefer.
+[Watch a video](https://youtu.be/gXKvRlEsEHI) if you prefer (as of version 1.1.x).
 
 Example Playbook
 ----------------
