@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+openssl pkcs7 -in certnew.p7b -print_certs -out chain.pem

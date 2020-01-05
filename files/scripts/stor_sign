@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+spath=$(dirname $0)
+openssl genrsa -out stor_cert.key 2048
+chmod 400 stor_cert.key 
+openssl req -new -key stor_cert.key -out /tmp/stor_ssl.csr -config $spath/stor_ssl.cnf
+#openssl req -text -noout -in /tmp/stor_ssl.csr
+cat /tmp/stor_ssl.csr 
+echo "Go to https://dc1/certsrv"

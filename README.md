@@ -30,9 +30,9 @@ Requirements
 Role Variables
 --------------
 
-Settable variables for the role are in `roles/sgws_config/vars/main.yml`. Passwords and credentials are incorporated using [ansible-vault](https://docs.ansible.com/ansible/latest/cli/ansible-vault.html) or [read below](#using-ansible-vault).Other variables are under `roles/sgws_config/vars/` for their respective tasks.
+Settable variables for the role are in `roles/sgws_config/vars/main.yml`. Passwords and credentials are incorporated using [ansible-vault](https://docs.ansible.com/ansible/latest/cli/ansible-vault.html) or [read below](#using-ansible-vault). Other variables are under `roles/sgws_config/vars/` for their respective tasks.
 
-Installing signed API management SSL certificates requires three files `mgmt_cert.pem`, `mgmt_cert.key` and `chain.pem` to be in `roles/sgws_config/files`. Storage API SSL certificate files are `stor_cert.pem`, `stor_cert.key` and `chain.pem`.
+Installing signed API management SSL certificates requires three files `mgmt_cert.pem`, `mgmt_cert.key` and `chain.pem` to be in `roles/sgws_config/files`. Storage API SSL certificate files are `stor_cert.pem`, `stor_cert.key` and `chain.pem`. I added helper scripts [below](#helper-scripts).
 
 Turn on or off plays in `roles/adlytaibi.sgws_config/tasks/main.yml` by commenting or uncommenting the respective lines.
 
@@ -276,6 +276,34 @@ If you wish to verify the encrypted values.
 # cat vault.txt|ansible-vault decrypt --vault-password-file ~/.passwd
 Decryption successful
 netapp01
+```
+
+Helper Scripts
+--------------
+
+The scripts directory located `~/.ansible/roles/adlytaibi.sgws_config/files/scripts` contains mgmt_ssl.cnf and stor_ssl.cnf files for your convenience, modify them to match your Grid management interface and your Gateway accordingly.
+Change directory to where the SSL keys will be stored. Execute the two scripts that will create a private key and CSR.
+
+```bash
+# cd ~/.ansible/roles/adlytaibi.sgws_config/files
+# scripts/mgmt_sign
+# scripts/stor_sign
+```
+
+After you sign the SSL certificates, make sure you rename them to mgmt_cert.pem and stor_cert.pem accordingly and copy them to `~/.ansible/roles/adlytaibi.sgws_config/files` directory along with the chain bundle `certnew.p7b`. You can now execute `bundle` script that will convert the chain from p7b to pem.
+
+```bash
+# scripts/bundle
+```
+
+These are the files that will be used by Ansible.
+
+```bash
+# chain.pem      CA bundle
+# mgmt_cert.pem  Signed cert for API management
+# mgmt_cert.key  Private key for the above cert
+# stor_cert.pem  Signed cert for Storage management
+# stor_cert.key  Private key for the above cert
 ```
 
 License

@@ -1,0 +1,20 @@
+[req]
+distinguished_name = req_distinguished_name
+req_extensions = v3_req
+prompt = no
+default_md = sha256
+[req_distinguished_name]
+C = CA
+ST = Ontario
+L = Ottawa
+O = NetApp
+OU = Storage
+CN = dc1-adm1
+[v3_req]
+keyUsage = keyEncipherment, dataEncipherment
+extendedKeyUsage = serverAuth
+subjectAltName = @alt_names
+[alt_names]
+DNS.1 = dc1-adm1.demo.netapp.com
+DNS.2 = dc1-adm1
+IP.1 = 192.168.0.10

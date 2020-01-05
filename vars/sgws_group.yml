@@ -8,16 +8,16 @@ groupspec: [
     "policies": {
       "management": {
         "alarmAcknowledgment": true,
-        "otherGridConfiguration": true,
-        "gridTopologyPageConfiguration": true,
+        "otherGridConfiguration": false,
+        "gridTopologyPageConfiguration": false,
         "tenantAccounts": true,
         "changeTenantRootPassword": true,
-        "maintenance": true,
+        "maintenance": false,
         "metricsQuery": true,
         "activateFeatures": false,
         "ilm": false,
         "objectMetadata": true,
-        "rootAccess": true
+        "rootAccess": false
       }
     }, "uniqueName": "group/Developers"
   },
@@ -25,16 +25,6 @@ groupspec: [
     "displayName": "Storage",
     "policies": {
       "management": {
-        "alarmAcknowledgment": true,
-        "otherGridConfiguration": true,
-        "gridTopologyPageConfiguration": true,
-        "tenantAccounts": true,
-        "changeTenantRootPassword": true,
-        "maintenance": true,
-        "metricsQuery": true,
-        "activateFeatures": true,
-        "ilm": true,
-        "objectMetadata": true,
         "rootAccess": true
       }
     }, "uniqueName": "group/Storage"

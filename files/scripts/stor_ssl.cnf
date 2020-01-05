@@ -1,0 +1,22 @@
+[req]
+distinguished_name = req_distinguished_name
+req_extensions = v3_req
+prompt = no
+default_md = sha256
+[req_distinguished_name]
+C = CA
+ST = Ontario
+L = Ottawa
+O = NetApp
+OU = Storage
+CN = s3
+[v3_req]
+keyUsage = keyEncipherment, dataEncipherment
+extendedKeyUsage = serverAuth
+subjectAltName = @alt_names
+[alt_names]
+DNS.1 = s3.demo.netapp.com
+DNS.2 = *.s3.demo.netapp.com
+DNS.3 = s3
+DNS.4 = *.s3
+IP.1 = 192.168.0.11

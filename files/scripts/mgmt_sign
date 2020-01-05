@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+spath=$(dirname $0)
+openssl genrsa -out mgmt_cert.key 2048
+chmod 400 mgmt_cert.key 
+openssl req -new -key mgmt_cert.key -out /tmp/mgmt_ssl.csr -config $spath/mgmt_ssl.cnf
+#openssl req -text -noout -in /tmp/mgmt_ssl.csr
+cat /tmp/mgmt_ssl.csr 
+echo "Go to https://dc1/certsrv"
