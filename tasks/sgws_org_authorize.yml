@@ -4,7 +4,7 @@
     url: https://{{ grid_admn }}/api/v2/authorize
     method: POST
     body: {
-      "accountId":"{{ acctnew.json.data.id }}",
+      "accountId":"{{ acctnew.json.data.id | default(accountid) }}",
       "username": "{{ org_user }}",
       "password": "{{ org_pass }}",
       "cookie": true,
@@ -14,4 +14,4 @@
     validate_certs: false
   register: orgauth
   no_log: true
-  when: acctnew.json.data.id is defined
+  when: acctnew.json.data.id is defined or accountid is defined
