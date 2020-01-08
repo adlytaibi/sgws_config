@@ -17,7 +17,7 @@ api_stor_cert_state: present
 
 # Tenant's credentials
 # Use accountid for existing tenant
-accountid: 12345678901234567890
+#accountid: 12345678901234567890
 org_user: root
 org_pass: my password
 

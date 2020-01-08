@@ -3,13 +3,17 @@ sgws_config
 
 This role and modules are intended to configure a NetApp StorageGRID. The following tasks can be performed:
 
+### Grid plays:
 - Authorize to get a grid token
 - Install signed SSL certificates for API management
 - Install signed SSL certificates for Storage management
 - Setup an identity provider
 - Create a local or federated admin groups for grid
 - Create a local admin users for grid
-- Authorize to get a tenant token
+- Create new tenant
+
+### Tenant plays:
+- Authorize to get a tenant token (using new created or existing accountid)
 - Setup an identity provider for tenant
 - Create a local or federated groups for tenant
 - Create a local users for tenant
@@ -32,7 +36,7 @@ Role Variables
 
 Settable variables for the role are in `roles/sgws_config/vars/main.yml`. Passwords and credentials are incorporated using [ansible-vault](https://docs.ansible.com/ansible/latest/cli/ansible-vault.html) or [read below](#using-ansible-vault). Other variables are under `roles/sgws_config/vars/` for their respective tasks.
 
-Installing signed API management SSL certificates requires three files `mgmt_cert.pem`, `mgmt_cert.key` and `chain.pem` to be in `roles/sgws_config/files`. Storage API SSL certificate files are `stor_cert.pem`, `stor_cert.key` and `chain.pem`. I added helper scripts [below](#helper-scripts).
+Installing signed API management SSL certificates requires three files `mgmt_cert.pem`, `mgmt_cert.key` and `chain.pem` to be in `roles/sgws_config/files`. Storage API SSL certificate files are `stor_cert.pem`, `stor_cert.key` and `chain.pem`. I added helper scripts [read below](#helper-scripts).
 
 Turn on or off plays in `roles/adlytaibi.sgws_config/tasks/main.yml` by commenting or uncommenting the respective lines.
 
