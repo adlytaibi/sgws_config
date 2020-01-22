@@ -2,14 +2,28 @@
 - name: Load bucket for tenant variables
   include_vars: sgws_org_bucket.yml
 
-- name: Create a bucket
-  uri:
-    url: https://{{ grid_admn }}/api/v2/org/containers
-    headers:
-      Authorization: "{{ orgauth.cookies.AccountAuthorization }}"
-    method: POST
-    body: "{{ bucketspec }}"
-    body_format: json
-    validate_certs: false
-    status_code: 201
+- name: Check if bucket "{{ bucketspec.name }}" exists within tenant and create
+  block:
+    - name: Check if bucket "{{ bucketspec.name }}" exists within tenant
+      uri:
+        url: https://{{ grid_admn }}/api/v2/org/containers
+        headers:
+          Authorization: "{{ orgauth.cookies.AccountAuthorization }}"
+        method: GET
+        body_format: json
+        validate_certs: false
+        status_code: 200
+      register: buckets
+
+    - name: Create bucket "{{ bucketspec.name }}"
+      uri:
+        url: https://{{ grid_admn }}/api/v2/org/containers
+        headers:
+          Authorization: "{{ orgauth.cookies.AccountAuthorization }}"
+        method: POST
+        body: "{{ bucketspec }}"
+        body_format: json
+        validate_certs: false
+        status_code: 201
+      when: bucketspec.name not in buckets.json|json_query('data[*].name')
   when: orgauth.skipped is not defined
