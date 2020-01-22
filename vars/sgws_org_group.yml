@@ -2,6 +2,7 @@
 # Tenant's group specification
 # For federated user group use
 # uniqueName: "federated-group/Developers"
+# pre 11.3 use "urn:s3:::*" for example.
 acctgrp: [
   {
     "displayName": "Developers",
@@ -18,7 +19,7 @@ acctgrp: [
             "Sid": "string",
             "Effect": "Allow",
             "Action": "s3:GetObject",
-            "Resource": "urn:s3:::*"
+            "Resource": "arn:aws:s3:::*"
           }
         ]
       }
@@ -39,7 +40,7 @@ acctgrp: [
             "Sid": "string",
             "Effect": "Allow",
             "Action": "s3:GetObject",
-            "Resource": "urn:s3:::*"
+            "Resource": "arn:aws:s3:::*"
           }
         ]
       }
