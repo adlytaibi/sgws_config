@@ -10,7 +10,6 @@
         headers:
           Authorization: "{{ orgauth.cookies.AccountAuthorization }}"
         method: GET
-        body_format: json
         validate_certs: false
         status_code: 200
       register: buckets

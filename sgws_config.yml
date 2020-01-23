@@ -2,6 +2,6 @@
 - name: sgws
   connection: local
   hosts: localhost
-  gather_facts: false
+  gather_facts: true
   roles:
     - adlytaibi.sgws_config

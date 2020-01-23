@@ -1,4 +1,5 @@
 ---
+# S3 keys expire in 6 months
 s3keyspec: {
-  "expires": "2020-09-04T00:00:00.000Z"
+  "expires": "{{ '%Y-%m-%dT%H:%M:%SZ'|strftime(ansible_date_time.epoch|int - (ansible_date_time.tz_offset|int*36) + 2592000 * 6 ) }}"
 }

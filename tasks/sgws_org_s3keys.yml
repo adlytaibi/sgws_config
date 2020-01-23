@@ -2,26 +2,38 @@
 - name: Load S3 access key for tenant variables
   include_vars: sgws_org_s3keys.yml
 
-- name: Generate S3 keys
+- name: Check if an S3 key exists
   uri:
     url: https://{{ grid_admn }}/api/v2/org/users/current-user/s3-access-keys
     headers:
       Authorization: "{{ orgauth.cookies.AccountAuthorization }}"
-    method: POST
-    body: "{{ s3keyspec }}"
-    body_format: json
+    method: GET
     validate_certs: false
-    status_code: 201
-  register: s3keys
+    status_code: 200
+  register: currentS3keys
   when: orgauth.skipped is not defined
 
-- name: Destination directory to store S3 keys
-  file:
-    path: "{{ s3keysdir }}"
-    state: directory
-    mode: 0600
+- name: Generate S3 keys
+  block:
+    - name: Generate S3 keys
+      uri:
+        url: https://{{ grid_admn }}/api/v2/org/users/current-user/s3-access-keys
+        headers:
+          Authorization: "{{ orgauth.cookies.AccountAuthorization }}"
+        method: POST
+        body: "{{ s3keyspec }}"
+        body_format: json
+        validate_certs: false
+        status_code: 201
+      register: s3keys
 
-- name: Save generated S3 keys
-  copy: content={{ s3keys.json.data }}
-    dest={{ s3keysdir }}{{ s3keys.json.data.accountId }}_{{ s3keys.json.data.accessKey }}
-  when: orgauth.skipped is not defined
+    - name: Destination directory to store S3 keys
+      file:
+        path: "{{ s3keysdir }}"
+        state: directory
+        mode: 0600
+
+    - name: Save generated S3 keys
+      copy: content={{ s3keys.json.data }}
+        dest={{ s3keysdir }}{{ s3keys.json.data.accountId }}_{{ s3keys.json.data.accessKey }}
+  when: orgauth.skipped is not defined and currentS3keys.json.data|length==0
