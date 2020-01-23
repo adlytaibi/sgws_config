@@ -35,5 +35,7 @@
 
     - name: Save generated S3 keys
       copy: content={{ s3keys.json.data }}
-        dest={{ s3keysdir }}{{ s3keys.json.data.accountId }}_{{ s3keys.json.data.accessKey }}
+        dest={{ s3keysdir }}{{ s3keys.json.data.accountId }}_{{ org_user|replace(' ','_') }}_{{ s3keys.json.data.accessKey }}
+    - name: S3 keys file
+      debug: msg="{{ s3keysdir }}{{ s3keys.json.data.accountId }}_{{ org_user|replace(' ','_') }}_{{ s3keys.json.data.accessKey }}"
   when: orgauth.skipped is not defined and currentS3keys.json.data|length==0
